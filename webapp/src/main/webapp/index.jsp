@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Modal Login Form</title>
 <style>
 /* The Modal (background) */
 .modal {
@@ -27,6 +30,8 @@
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   animation: animatetop 0.4s;
+  position: relative;
+  border-radius: 10px;
 }
 
 /* Add Animation */
@@ -38,8 +43,8 @@
 /* The Close Button */
 .close {
   position: absolute;
-  right: 25px;
-  top: 15px;
+  right: 20px;
+  top: 20px;
   color: #aaa;
   font-size: 28px;
   font-weight: bold;
@@ -66,11 +71,12 @@ img.avatar {
 /* Style the input fields */
 input[type=text], input[type=password] {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
+  padding: 15px;
+  margin: 5px 0 20px 0;
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 /* Style the submit button */
@@ -82,6 +88,8 @@ button {
   border: none;
   cursor: pointer;
   width: 100%;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 button:hover {
@@ -93,6 +101,7 @@ button:hover {
   width: auto;
   padding: 10px 18px;
   background-color: #f44336;
+  border-radius: 5px;
 }
 
 /* Center the "Remember me" checkbox */
@@ -119,7 +128,7 @@ span.psw {
 </head>
 <body>
 
-<h2>Modal Login Form</h2>
+<h2>Advanced Modal Login Form</h2>
 
 <!-- Button to open the modal login form -->
 <button onclick="document.getElementById('id01').style.display='block'">Login</button>
@@ -129,7 +138,7 @@ span.psw {
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 
   <!-- Modal Content -->
-  <form class="modal-content animate" action="/action_page.php">
+  <form class="modal-content animate" id="loginForm">
     <div class="imgcontainer">
       <img src="img_avatar2.png" alt="Avatar" class="avatar">
     </div>
@@ -164,6 +173,21 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+// Form validation
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  var uname = document.forms['loginForm']['uname'].value;
+  var psw = document.forms['loginForm']['psw'].value;
+  
+  if(uname == "" || psw == "") {
+    alert("Username and Password must be filled out");
+    return false;
+  }
+  
+  alert("Logged in successfully");
+  modal.style.display = "none";
+});
 </script>
 
 </body>
